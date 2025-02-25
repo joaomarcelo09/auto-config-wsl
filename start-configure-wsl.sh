@@ -1,6 +1,9 @@
 #!/bin/bash
 # main.sh
 
+# Ativa a permissao para rodar os scripts
+chmod +x ./setup/*.sh
+
 # Chama cada script em ordem
 echo "Iniciando o setup..."
 
