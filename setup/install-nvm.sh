@@ -9,6 +9,16 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
+# Adicionar configuração do NVM ao ~/.zshrc, se ainda não estiver lá
+if ! grep -q 'export NVM_DIR="$HOME/.nvm"' ~/.zshrc; then
+  echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+  echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+  echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.zshrc
+  echo "Configuração do NVM adicionada ao ~/.zshrc!"
+else
+  echo "O NVM já está configurado no ~/.zshrc."
+fi
+
 # Testando NVM
 echo "Testando NVM..."
 nvm -v

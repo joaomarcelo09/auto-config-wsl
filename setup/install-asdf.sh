@@ -1,57 +1,71 @@
 #!/bin/zsh
-# install-asdf.sh
 
 # Instalar asdf
 echo "Instalando asdf..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 
-# Adicionar configuração no .zshrc
-echo "Configurando o .zshrc para carregar o asdf..."
-echo '# Carregar o asdf' >> ~/.zshrc
-echo '. "$HOME/.asdf/asdf.sh"' >> ~/.zshrc
+# Configurar o asdf na sessão atual
+echo "Carregando o asdf na sessão atual..."
+export ASDF_DIR="$HOME/.asdf"
+. "$ASDF_DIR/asdf.sh"
+. "$ASDF_DIR/completions/asdf.bash"
 
-# Rodar o source para carregar as novas configurações
-echo "Aplicando configurações no Zsh..."
-source ~/.zshrc
-
-# Perguntar se o usuário deseja instalar o Java
-read -p "Deseja instalar o plugin do Java? (y/n): " install_java
-if [[ "$install_java" == "y" || "$install_java" == "Y" ]]; then
-  # Instalar o plugin do Java
-  echo "Instalando o plugin do Java..."
-  asdf plugin-add java
-  
-  # Instalar a versão mais recente do Java
-  echo "Instalando a versão mais recente do Java..."
-  asdf install java latest
-  
-  # Definir a versão global do Java
-  echo "Definindo o Java mais recente como global..."
-  asdf global java latest
-  
-  # Verificar a versão do Java instalada
-  echo "Verificando a versão do Java..."
-  java -version
+# Adicionar configuração no ~/.zshrc se ainda não estiver lá
+if ! grep -q 'export ASDF_DIR="$HOME/.asdf"' ~/.zshrc; then
+  echo "Adicionando asdf ao ~/.zshrc..."
+  echo 'export ASDF_DIR="$HOME/.asdf"' >> ~/.zshrc
+  echo '. "$ASDF_DIR/asdf.sh"' >> ~/.zshrc
+  echo '. "$ASDF_DIR/completions/asdf.bash"' >> ~/.zshrc
+  echo "Configuração do asdf adicionada ao ~/.zshrc!"
+else
+  echo "O asdf já está configurado no ~/.zshrc."
 fi
 
-# Perguntar se o usuário deseja instalar o Go
-read -p "Deseja instalar o plugin do Go? (y/n): " install_go
-if [[ "$install_go" == "y" || "$install_go" == "Y" ]]; then
-  # Instalar o plugin do Go
-  echo "Instalando o plugin do Go..."
-  asdf plugin-add golang
-  
-  # Instalar a versão mais recente do Go
-  echo "Instalando a versão mais recente do Go..."
-  asdf install golang latest
-  
-  # Definir a versão global do Go
-  echo "Definindo o Go mais recente como global..."
-  asdf global golang latest
-  
-  # Verificar a versão do Go instalada
-  echo "Verificando a versão do Go..."
-  go version
+# Instalar plugins conforme escolha do usuário
+install_plugin() {
+  local plugin_name=$1
+  local command_name=$2
+
+  read -p "Deseja instalar o plugin do $plugin_name? (y/n): " install_choice
+  if [[ "$install_choice" == "y" || "$install_choice" == "Y" ]]; then
+    echo "Instalando o plugin do $plugin_name..."
+    asdf plugin-add "$plugin_name"
+    
+    echo "Instalando a versão mais recente do $plugin_name..."
+    asdf install "$plugin_name" latest
+    
+    echo "Definindo o $plugin_name mais recente como global..."
+    asdf global "$plugin_name" latest
+    
+    echo "Verificando a versão instalada do $plugin_name..."
+    $command_name --version
+  fi
+}
+
+# Perguntar se o usuário deseja instalar os plugins
+install_plugin "java" "java"
+install_plugin "golang" "go"
+
+# Testando Java
+echo "Testando Java..."
+java -version
+echo -n "O resultado é como o esperado? (Exemplo: openjdk version \"17.0.1\" 2021-10-19) [s/n]: "
+read java_result
+if [[ "$java_result" != "s" ]]; then
+    echo "Verifique a instalação do Java!"
+else
+    echo "Java instalado corretamente!"
+fi
+
+# Testando Go
+echo "Testando Go..."
+go version
+echo -n "O resultado é como o esperado? (Exemplo: go version go1.18.1 linux/amd64) [s/n]: "
+read go_result
+if [[ "$go_result" != "s" ]]; then
+    echo "Verifique a instalação do Go!"
+else
+    echo "Go instalado corretamente!"
 fi
 
 echo "Instalação do asdf e plugins concluída!"
