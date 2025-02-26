@@ -9,4 +9,4 @@ fi
 
 # Definir Zsh como shell padrão
 echo "Definindo Zsh como shell padrão..."
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)

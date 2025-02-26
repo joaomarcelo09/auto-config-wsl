@@ -31,7 +31,6 @@ sudo docker run hello-world
 
 # Configurar Docker para rodar sem sudo
 echo "Configurando Docker para rodar sem sudo..."
-sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 

@@ -9,6 +9,6 @@ chmod +x ./setup/*.sh
 ./setup/install-zsh.sh
 
 # Muda para o Zsh e executa o main-zsh.sh
-exec zsh ./main-zsh.sh
+exec zsh ./setup/main-zsh.sh
 
 echo "Setup concluído!"
