@@ -25,13 +25,13 @@ fi
 echo "Instalando o plugin do Java..."
 asdf plugin-add java
 
-# Instalar a versão mais recente do Java
-echo "Instalando a versão mais recente do Java..."
-asdf install java latest
+# Instalar a versão 17 do Java
+echo "Instalando o Temurin 17..."
+asdf install java temurin-17.0.8+7 
 
 # Definir a versão global do Java
-echo "Definindo a versão mais recente do Java como global..."
-asdf global java latest
+echo "Definindo o Temurin como global..."
+asdf global java temurin-17.0.8+7
 
 # Verificar a versão instalada do Java
 echo "Verificando a versão do Java..."
@@ -79,5 +79,29 @@ if [[ "$go_result" != "s" ]]; then
 else
     echo "Go instalado corretamente!"
 fi
+
+# Adicionar o plugin do glab
+echo "Adicionando o plugin do glab..."
+asdf plugin-add glab
+
+# Instalar a versão mais recente do glab
+echo "Instalando o glab..."
+asdf install glab latest
+
+# Definir o glab como versão global
+echo "Definindo o glab mais recente como global..."
+asdf global glab latest
+
+# Testando Glab
+echo "Testando Glab..."
+glab --version
+echo -n "O resultado é como o esperado? [s/n]: "
+read glab_result
+if [[ "$go_result" != "s" ]]; then
+    echo "glab_result a instalação do Go!"
+else
+    echo "Glab instalado corretamente!"
+fi
+
 
 echo "Instalação do asdf e plugins concluída!"
