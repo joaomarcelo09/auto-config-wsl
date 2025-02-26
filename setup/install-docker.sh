@@ -25,15 +25,22 @@ sudo apt-get update
 echo "Instalando Docker..."
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-# Testar se o Docker está funcionando
-echo "Testando a instalação do Docker..."
+# Testando Docker
+echo "Testando Docker..."
 sudo docker run hello-world
+echo -n "O resultado é como o esperado? (Exemplo: Hello from Docker!) [s/n]: "
+read docker_result
+if [[ "$docker_result" != "s" ]]; then
+    echo "Verifique a instalação do Docker!"
+else
+    echo "Docker instalado corretamente!"
+fi
 
-# Configurar Docker para rodar sem sudo
-echo "Configurando Docker para rodar sem sudo..."
-sudo usermod -aG docker $USER
-newgrp docker
+# # Configurar Docker para rodar sem sudo
+# echo "Configurando Docker para rodar sem sudo..."
+# sudo usermod -aG docker $USER
+# newgrp docker
 
 # Testar novamente o Docker sem sudo
-echo "Testando Docker novamente..."
-docker run hello-world
+# echo "Testando Docker novamente..."
+# docker run hello-world
