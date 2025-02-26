@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # install-plugins.sh
 
 # Instalar plugins zsh-autosuggestions e zsh-syntax-highlighting

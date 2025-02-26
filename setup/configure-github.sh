@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # configure-github.sh
 
 # Perguntar ao usuário se deseja configurar o GitHub

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # install-docker.sh
 
 # Remover pacotes antigos relacionados ao Docker

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # run-tests.sh
 
 # Testando Java

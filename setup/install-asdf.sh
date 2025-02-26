@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # install-asdf.sh
 
 # Instalar asdf

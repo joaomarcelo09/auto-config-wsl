@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # install-nvm.sh
 
 # Instalar NVM (Node Version Manager)
