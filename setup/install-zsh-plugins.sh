@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+sudo chown -R $USER:$USER $ZSH_CUSTOM
+
 # Definir ZSH_CUSTOM se não estiver definido
 if [ -z "$ZSH_CUSTOM" ]; then
     export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
