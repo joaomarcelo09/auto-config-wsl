@@ -21,30 +21,24 @@ else
   echo "O asdf já está configurado no ~/.zshrc."
 fi
 
-# Instalar plugins conforme escolha do usuário
-install_plugin() {
-  local plugin_name=$1
-  local command_name=$2
+# Instalar o plugin Java
+echo "Instalando o plugin do Java..."
+asdf plugin-add java
 
-  read -p "Deseja instalar o plugin do $plugin_name? (y/n): " install_choice
-  if [[ "$install_choice" == "y" || "$install_choice" == "Y" ]]; then
-    echo "Instalando o plugin do $plugin_name..."
-    asdf plugin-add "$plugin_name"
-    
-    echo "Instalando a versão mais recente do $plugin_name..."
-    asdf install "$plugin_name" latest
-    
-    echo "Definindo o $plugin_name mais recente como global..."
-    asdf global "$plugin_name" latest
-    
-    echo "Verificando a versão instalada do $plugin_name..."
-    $command_name --version
-  fi
-}
+# Instalar a versão mais recente do Java
+echo "Instalando a versão mais recente do Java..."
+asdf install java latest
 
-# Perguntar se o usuário deseja instalar os plugins
-install_plugin "java" "java"
-install_plugin "golang" "go"
+# Definir a versão global do Java
+echo "Definindo a versão mais recente do Java como global..."
+asdf global java latest
+
+# Verificar a versão instalada do Java
+echo "Verificando a versão do Java..."
+java -version
+
+echo "Java instalado e configurado com sucesso!"
+
 
 # Testando Java
 echo "Testando Java..."
@@ -56,6 +50,24 @@ if [[ "$java_result" != "s" ]]; then
 else
     echo "Java instalado corretamente!"
 fi
+
+# Instalar o plugin Golang
+echo "Instalando o plugin do Golang..."
+asdf plugin-add golang
+
+# Instalar a versão mais recente do Golang
+echo "Instalando a versão mais recente do Golang..."
+asdf install golang latest
+
+# Definir a versão global do Golang
+echo "Definindo a versão mais recente do Golang como global..."
+asdf global golang latest
+
+# Verificar a versão instalada do Golang
+echo "Verificando a versão do Golang..."
+go version
+
+echo "Golang instalado e configurado com sucesso!"
 
 # Testando Go
 echo "Testando Go..."
