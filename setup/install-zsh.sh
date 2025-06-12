@@ -5,6 +5,7 @@
 if ! command -v zsh &> /dev/null; then
     echo "Instalando Zsh..."
     sudo apt update && sudo apt install -y zsh
+    sudo apt install git curl
 fi
 
 # Definir Zsh como shell padrão
