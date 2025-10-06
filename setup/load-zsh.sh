@@ -12,17 +12,6 @@ else
     echo "Configuração do NVM adicionada com sucesso!"
 fi
 
-# Verificar se a configuração do ASDF está no .zshrc
-echo "Verificando a configuração do ASDF no .zshrc..."
-if grep -q '. "$HOME/.asdf/asdf.sh"' ~/.zshrc && grep -q '. "$HOME/.asdf/completions/asdf.bash"' ~/.zshrc; then
-    echo "Configuração do ASDF já foi adicionada ao .zshrc!"
-else
-    echo "A configuração do ASDF não foi encontrada no .zshrc. Adicionando..."
-    echo '. "$HOME/.asdf/asdf.sh"' >> ~/.zshrc
-    echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.zshrc
-    echo "Configuração do ASDF adicionada com sucesso!"
-fi
-
 # Carregar as configurações do .zshrc
 echo "Carregando as configurações do .zshrc..."
 source ~/.zshrc
@@ -35,11 +24,4 @@ else
     echo "Erro: NVM não está funcionando. Verifique as configurações."
 fi
 
-echo "Verificando se o ASDF está funcionando..."
-if command -v asdf &> /dev/null; then
-    echo "ASDF está funcionando corretamente!"
-else
-    echo "Erro: ASDF não está funcionando. Verifique as configurações."
-fi
-
-echo "O setup do NVM e ASDF foi verificado e as configurações foram aplicadas com sucesso!"
+echo "O setup do NVM foi verificado e as configurações foram aplicadas com sucesso!"
